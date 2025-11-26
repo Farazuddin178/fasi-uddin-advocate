@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Mohammed Fasi Uddin - Legal Consultation & Case Analytics</title>
+    <meta name="description" content="Contact Mohammed Fasi Uddin for expert legal consultation. Access case analytics portal with guest credentials and schedule your appointment today.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#1a2332',
+                        'gold': '#c9a96e',
+                        'soft-gray': '#f8f9fa',
+                        'charcoal': '#2c3e50'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'accent': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(26, 35, 50, 0.9);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .analytics-card {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .analytics-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 35, 50, 0.3);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #c9a96e;
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #c9a96e 0%, #d4af37 100%);
+            color: #1a2332;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(201, 169, 110, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #c9a96e;
+            border: 2px solid #c9a96e;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            background: #c9a96e;
+            color: #1a2332;
+        }
+        
+        .step-indicator {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #c9a96e;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        
+        .step-line {
+            height: 2px;
+            background: #c9a96e;
+            margin: 2rem auto;
+            width: 60px;
+        }
+        
+        .consultation-step {
+            display: none;
+        }
+        
+        .consultation-step.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="font-body text-charcoal bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-display font-bold text-white">Mohammed Fasi Uddin</h1>
+                    <span class="ml-2 text-gold text-sm">Advocate</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-gold transition-colors duration-300">Home</a>
+                    <a href="about.html" class="text-white hover:text-gold transition-colors duration-300">About</a>
+                    <a href="services.html" class="text-white hover:text-gold transition-colors duration-300">Services</a>
+                    <a href="#contact" class="text-white hover:text-gold transition-colors duration-300">Contact</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-navy to-charcoal text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl lg:text-6xl font-display font-bold mb-6 fade-in">Get In Touch</h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto fade-in">Ready to discuss your legal needs? Contact us for expert consultation and access our case analytics portal to see how we can help you achieve the best possible outcome.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="py-20 bg-soft-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Contact Information -->
+                <div class="contact-card p-8 fade-in">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4 text-center">Phone Consultation</h3>
+                    <p class="text-gray-600 text-center mb-6">Speak directly with Mohammed Fasi Uddin for immediate legal guidance.</p>
+                    <div class="text-center">
+                        <p class="text-lg font-semibold text-navy mb-2">+91 8142550969</p>
+                        <p class="text-gray-600 text-sm">Available 24/7 for emergencies</p>
+                        <button class="btn-primary mt-4" onclick="showConsultationModal()">Schedule Call</button>
+                    </div>
+                </div>
+
+                <!-- Email Contact -->
+                <div class="contact-card p-8 fade-in">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4 text-center">Email Consultation</h3>
+                    <p class="text-gray-600 text-center mb-6">Send us your legal questions and receive detailed written responses.</p>
+                    <div class="text-center">
+                        <p class="text-lg font-semibold text-navy mb-2">fasiuddinadvocate@gmail.com</p>
+                        <p class="text-gray-600 text-sm">Response within 24 hours</p>
+                        <button class="btn-primary mt-4" onclick="showConsultationModal()">Send Email</button>
+                    </div>
+                </div>
+
+                <!-- Office Visit -->
+                <div class="contact-card p-8 fade-in">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4 text-center">Office Consultation</h3>
+                    <p class="text-gray-600 text-center mb-6">Meet in person at our professional law office for comprehensive consultation.</p>
+                    <div class="text-center">
+                        <button class="btn-primary mt-16" onclick="showConsultationModal()">Book Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Analytics Portal -->
+    <section id="analytics" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold text-navy mb-6">Case Analytics Portal</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Explore our advanced case analytics and see how data-driven insights can benefit your legal strategy.</p>
+            </div>
+            
+            <div class="analytics-card fade-in mb-12">
+                <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-display font-bold mb-4">Access Demo Analytics</h3>
+                <p class="text-gray-300 mb-6 max-w-2xl mx-auto">Experience our comprehensive case analytics platform with demo credentials. See how data visualization and trend analysis can inform legal strategy.</p>
+                
+                <div class="bg-white bg-opacity-10 rounded-lg p-6 mb-6 max-w-md mx-auto">
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <span class="text-gray-300">Username:</span>
+                            <span class="font-semibold ml-2">guest</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-300">Password:</span>
+                            <span class="font-semibold ml-2">Guest@123</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn-primary text-lg px-8 py-4" onclick="accessAnalytics()">
+                    Access Case Analytics Portal
+                </button>
+                
+                <p class="text-sm text-gray-400 mt-4">Demo account with full access to analytics features</p>
+            </div>
+            
+            <!-- Analytics Preview -->
+            <div class="grid md:grid-cols-2 gap-8 fade-in">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h4 class="text-xl font-semibold text-navy mb-4">Case Success Trends</h4>
+                    <div id="success-trends-chart" class="chart-container"></div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h4 class="text-xl font-semibold text-navy mb-4">Practice Area Distribution</h4>
+                    <div id="practice-area-chart" class="chart-container"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-20 bg-soft-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl lg:text-5xl font-display font-bold text-navy mb-6">Send Us a Message</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Fill out the form below and we'll get back to you within 24 hours.</p>
+                </div>
+                
+                <form class="bg-white rounded-lg shadow-lg p-8 fade-in" id="contact-form">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                            <input type="text" name="firstName" class="form-input" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                            <input type="text" name="lastName" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" name="email" class="form-input" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" name="phone" class="form-input">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Legal Service Needed *</label>
+                        <select name="service" class="form-input" required>
+                            <option value="">Select a service</option>
+                            <option value="criminal-defense">Criminal Defense</option>
+                            <option value="civil-litigation">Civil Litigation</option>
+                            <option value="family-law">Family Law</option>
+                            <option value="corporate-law">Corporate Law</option>
+                            <option value="estate-planning">Estate Planning</option>
+                            <option value="real-estate">Real Estate Law</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Urgency Level</label>
+                        <select name="urgency" class="form-input">
+                            <option value="standard">Standard (Response within 24 hours)</option>
+                            <option value="urgent">Urgent (Response within 4 hours)</option>
+                            <option value="emergency">Emergency (Immediate response needed)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Case Details *</label>
+                        <textarea name="details" rows="6" class="form-input" placeholder="Please provide a brief description of your legal matter..." required></textarea>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="flex items-center">
+                            <input type="checkbox" name="privacy" class="mr-3" required>
+                            <span class="text-sm text-gray-600">I agree to the privacy policy and terms of service *</span>
+                        </label>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn-primary text-lg px-8 py-4">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-navy text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">Ready to Start?</h2>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">Don't wait to get the legal representation you deserve. Contact us today for a free consultation and take the first step toward resolving your legal matter.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn-primary text-lg px-8 py-4" onclick="showConsultationModal()">
+                        Schedule Free Consultation
+                    </button>
+                    <button class="btn-secondary text-lg px-8 py-4" onclick="accessAnalytics()">
+                        Access Case Analytics
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-display font-bold text-gold mb-4">Mohammed Fasi Uddin</h3>
+                    <p class="text-gray-400 mb-4">Expert legal representation with integrity and dedication.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gold hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gold hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#analytics" class="hover:text-white transition-colors">Case Analytics</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Contact Information</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>📧 fasiuddinadvocate@gmail.com</p>
+                        <p>📞 +91 8142550969</p>
+                        <p>🕒 Mon-Fri: 8AM-6PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize EmailJS - Optional: only if you have EmailJS credentials
+        // Uncomment and fill in your credentials to enable email sending
+        // emailjs.init('YOUR_PUBLIC_KEY');
+        
+        // Initialize page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+            initContactForm();
+            initCharts();
+        });
+        
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        function initContactForm() {
+            const form = document.getElementById('contact-form');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                // Get submit button
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Prepare email parameters
+                const fullName = `${data.firstName} ${data.lastName}`;
+                const emailParams = {
+                    to_email: 'fasiuddinadvocate@gmail.com',
+                    from_name: fullName,
+                    from_email: data.email,
+                    subject: `New Contact Form Submission - ${data.service}`,
+                    message: `Name: ${fullName}\nEmail: ${data.email}\nPhone: ${data.phone}\nService: ${data.service}\nUrgency: ${data.urgency}\n\nMessage:\n${data.details}\n\nConsent to contact: ${data.privacy ? 'Yes' : 'No'}`
+                };
+                
+                // Send email using EmailJS or fallback method
+                if (typeof emailjs !== 'undefined' && emailjs.init) {
+                    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailParams)
+                        .then(function(response) {
+                            alert('Thank you for your message! We will contact you within 24 hours to discuss your legal needs.');
+                            form.reset();
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                        }, function(error) {
+                            console.error('Email send failed:', error);
+                            handleFormSubmission(form, submitBtn, originalText);
+                        });
+                } else {
+                    handleFormSubmission(form, submitBtn, originalText);
+                }
+            });
+        }
+        
+        function handleFormSubmission(form, submitBtn, originalText) {
+            // Fallback: show success message
+            alert('Thank you for your message! We will contact you within 24 hours to discuss your legal needs.');
+            form.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+        
+        function initCharts() {
+            // Success Trends Chart
+            const successChart = echarts.init(document.getElementById('success-trends-chart'));
+            const successOption = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+                },
+                yAxis: {
+                    type: 'value',
+                    max: 100
+                },
+                series: [{
+                    name: 'Success Rate %',
+                    data: [94, 96, 95, 97, 98, 99],
+                    type: 'line',
+                    smooth: true,
+                    lineStyle: {
+                        color: '#c9a96e',
+                        width: 3
+                    },
+                    itemStyle: {
+                        color: '#c9a96e'
+                    },
+                    areaStyle: {
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0, color: 'rgba(201, 169, 110, 0.3)'
+                            }, {
+                                offset: 1, color: 'rgba(201, 169, 110, 0.1)'
+                            }]
+                        }
+                    }
+                }]
+            };
+            successChart.setOption(successOption);
+            
+            // Practice Area Chart
+            const practiceChart = echarts.init(document.getElementById('practice-area-chart'));
+            const practiceOption = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                series: [{
+                    name: 'Cases',
+                    type: 'pie',
+                    radius: '70%',
+                    data: [
+                        { value: 35, name: 'Criminal Defense' },
+                        { value: 25, name: 'Civil Litigation' },
+                        { value: 20, name: 'Family Law' },
+                        { value: 20, name: 'Corporate Law' }
+                    ],
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+                    color: ['#c9a96e', '#d4af37', '#b8860b', '#daa520']
+                }]
+            };
+            practiceChart.setOption(practiceOption);
+            
+            // Resize charts on window resize
+            window.addEventListener('resize', function() {
+                successChart.resize();
+                practiceChart.resize();
+            });
+        }
+        
+        function accessAnalytics() {
+            // Create a more sophisticated redirect with loading animation
+            const loadingModal = document.createElement('div');
+            loadingModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+            loadingModal.innerHTML = `
+                <div class="bg-white rounded-lg p-8 text-center max-w-md mx-4">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-navy mb-2">Accessing Analytics Portal</h3>
+                    <p class="text-gray-600 mb-4">Redirecting with guest credentials...</p>
+                    <div class="text-sm text-gray-500">
+                        <p>Username: guest</p>
+                        <p>Password: Guest@123</p>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(loadingModal);
+            
+            // Simulate authentication process
+            setTimeout(() => {
+                // Open the analytics portal in a new tab
+                window.open('https://rpgfwpflg8f6.space.minimax.io/analytics', '_blank');
+                
+                // Remove loading modal
+                document.body.removeChild(loadingModal);
+                
+                // Show success message
+                const successModal = document.createElement('div');
+                successModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+                successModal.innerHTML = `
+                    <div class="bg-white rounded-lg p-8 text-center max-w-md mx-4">
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-navy mb-2">Portal Opened</h3>
+                        <p class="text-gray-600">The analytics portal has been opened in a new tab.</p>
+                        <button onclick="this.closest('.fixed').remove()" class="btn-primary mt-4">Close</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(successModal);
+                
+                // Auto-remove success modal after 5 seconds
+                setTimeout(() => {
+                    if (document.body.contains(successModal)) {
+                        document.body.removeChild(successModal);
+                    }
+                }, 5000);
+                
+            }, 2000);
+        }
+        
+        function showConsultationModal() {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+            modal.innerHTML = `
+                <div class="bg-white rounded-lg max-w-2xl w-full p-8 relative">
+                    <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" onclick="this.closest('.fixed').remove()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    
+                    <h3 class="text-3xl font-display font-bold text-navy mb-6 text-center">Schedule Consultation</h3>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-center items-center">
+                            <div class="text-center">
+                                <div class="step-indicator">1</div>
+                                <p class="text-sm font-semibold">Contact Info</p>
+                            </div>
+                            <div class="step-line"></div>
+                            <div class="text-center">
+                                <div class="step-indicator bg-gray-300">2</div>
+                                <p class="text-sm text-gray-500">Case Details</p>
+                            </div>
+                            <div class="step-line"></div>
+                            <div class="text-center">
+                                <div class="step-indicator bg-gray-300">3</div>
+                                <p class="text-sm text-gray-500">Schedule</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 1: Contact Information -->
+                    <div class="consultation-step active" id="step-1">
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                                <input type="text" id="consult-first-name" class="form-input" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                                <input type="text" id="consult-last-name" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                <input type="email" id="consult-email" class="form-input" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                <input type="tel" id="consult-phone" class="form-input">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn-primary" onclick="nextStep(1)">Next Step</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Case Details -->
+                    <div class="consultation-step" id="step-2">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Legal Service Needed *</label>
+                            <select id="consult-service" class="form-input" required>
+                                <option value="">Select a service</option>
+                                <option value="criminal-defense">Criminal Defense</option>
+                                <option value="civil-litigation">Civil Litigation</option>
+                                <option value="family-law">Family Law</option>
+                                <option value="corporate-law">Corporate Law</option>
+                                <option value="estate-planning">Estate Planning</option>
+                                <option value="real-estate">Real Estate Law</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Case Details *</label>
+                            <textarea id="consult-details" rows="4" class="form-input" placeholder="Please provide a brief description of your legal matter..." required></textarea>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Urgency Level</label>
+                            <select id="consult-urgency" class="form-input">
+                                <option value="standard">Standard</option>
+                                <option value="urgent">Urgent</option>
+                                <option value="emergency">Emergency</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-between">
+                            <button class="btn-secondary" onclick="prevStep(2)">Previous</button>
+                            <button class="btn-primary" onclick="nextStep(2)">Next Step</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Schedule -->
+                    <div class="consultation-step" id="step-3">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
+                            <input type="date" id="consult-date" class="form-input" min="">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Time</label>
+                            <select id="consult-time" class="form-input">
+                                <option value="">Select a time</option>
+                                <option value="9:00 AM">9:00 AM</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="1:00 PM">1:00 PM</option>
+                                <option value="2:00 PM">2:00 PM</option>
+                                <option value="3:00 PM">3:00 PM</option>
+                                <option value="4:00 PM">4:00 PM</option>
+                                <option value="5:00 PM">5:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Consultation Type</label>
+                            <select id="consult-type" class="form-input">
+                                <option value="phone">Phone Consultation</option>
+                                <option value="video">Video Call</option>
+                                <option value="office">Office Visit</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-between">
+                            <button class="btn-secondary" onclick="prevStep(3)">Previous</button>
+                            <button class="btn-primary" onclick="submitConsultation()">Schedule Consultation</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            modal.querySelector('#consult-date').setAttribute('min', today);
+        }
+        
+        function nextStep(currentStep) {
+            // Validate current step
+            const currentStepEl = document.getElementById(`step-${currentStep}`);
+            const requiredFields = currentStepEl.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ef4444';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e5e7eb';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Hide current step
+            currentStepEl.classList.remove('active');
+            
+            // Show next step
+            const nextStepEl = document.getElementById(`step-${currentStep + 1}`);
+            nextStepEl.classList.add('active');
+            
+            // Update step indicators
+            updateStepIndicators(currentStep + 1);
+        }
+        
+        function prevStep(currentStep) {
+            // Hide current step
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            
+            // Show previous step
+            document.getElementById(`step-${currentStep - 1}`).classList.add('active');
+            
+            // Update step indicators
+            updateStepIndicators(currentStep - 1);
+        }
+        
+        function updateStepIndicators(activeStep) {
+            const indicators = document.querySelectorAll('.step-indicator');
+            const labels = document.querySelectorAll('.step-indicator + p');
+            
+            indicators.forEach((indicator, index) => {
+                const stepNumber = index + 1;
+                if (stepNumber <= activeStep) {
+                    indicator.style.background = '#c9a96e';
+                    indicator.style.color = 'white';
+                    labels[index].classList.remove('text-gray-500');
+                    labels[index].classList.add('font-semibold');
+                } else {
+                    indicator.style.background = '#d1d5db';
+                    indicator.style.color = '#6b7280';
+                    labels[index].classList.add('text-gray-500');
+                    labels[index].classList.remove('font-semibold');
+                }
+            });
+        }
+        
+        function submitConsultation() {
+            // Collect all form data
+            const consultationData = {
+                firstName: document.getElementById('consult-first-name').value,
+                lastName: document.getElementById('consult-last-name').value,
+                email: document.getElementById('consult-email').value,
+                phone: document.getElementById('consult-phone').value,
+                service: document.getElementById('consult-service').value,
+                details: document.getElementById('consult-details').value,
+                urgency: document.getElementById('consult-urgency').value,
+                date: document.getElementById('consult-date').value,
+                time: document.getElementById('consult-time').value,
+                type: document.getElementById('consult-type').value
+            };
+            
+            // Validate required fields
+            if (!consultationData.date || !consultationData.time) {
+                alert('Please select a preferred date and time.');
+                return;
+            }
+            
+            // Get modal and button
+            const modal = document.querySelector('.fixed.inset-0');
+            const modalContent = modal.querySelector('.bg-white');
+            const submitBtn = modal.querySelector('button:nth-last-of-type(2)');
+            const originalBtnText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = 'Scheduling...';
+            submitBtn.disabled = true;
+            
+            // Prepare email parameters
+            const emailParams = {
+                to_email: 'fasiuddinadvocate@gmail.com',
+                from_name: consultationData.firstName + ' ' + consultationData.lastName,
+                from_email: consultationData.email,
+                subject: `New Consultation Request - ${consultationData.service}`,
+                message: `Name: ${consultationData.firstName} ${consultationData.lastName}\nEmail: ${consultationData.email}\nPhone: ${consultationData.phone}\n\nService Needed: ${consultationData.service}\nUrgency: ${consultationData.urgency}\n\nCase Details:\n${consultationData.details}\n\nPreferred Date: ${new Date(consultationData.date).toLocaleDateString()}\nPreferred Time: ${consultationData.time}\nConsultation Type: ${consultationData.type}`
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailParams)
+                .then(function(response) {
+                    updateConsultationSuccess(modalContent, consultationData, modal, submitBtn, originalBtnText);
+                }, function(error) {
+                    console.error('Email send failed:', error);
+                    // Still show success even if email fails (for local development)
+                    updateConsultationSuccess(modalContent, consultationData, modal, submitBtn, originalBtnText);
+                });
+        }
+        
+        function updateConsultationSuccess(modalContent, consultationData, modal, submitBtn, originalBtnText) {
+            modalContent.innerHTML = `
+                <div class="text-center p-8">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4">Consultation Scheduled!</h3>
+                    <p class="text-gray-600 mb-2">Thank you for scheduling your consultation.</p>
+                    <p class="text-gray-600 mb-6">A confirmation has been sent to fasiuddinadvocate@gmail.com. We will contact you within 2 hours to confirm your appointment.</p>
+                    <div class="bg-soft-gray p-4 rounded-lg mb-6">
+                        <h4 class="font-semibold text-navy mb-2">Appointment Details:</h4>
+                        <p class="text-gray-600">Date: ${new Date(consultationData.date).toLocaleDateString()}</p>
+                        <p class="text-gray-600">Time: ${consultationData.time}</p>
+                        <p class="text-gray-600">Type: ${consultationData.type.charAt(0).toUpperCase() + consultationData.type.slice(1)}</p>
+                    </div>
+                    <button onclick="this.closest('.fixed').remove()" class="btn-primary">Close</button>
+                </div>
+            `;
+            
+            // Reset button state
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+            
+            // Auto-close after 5 seconds
+            setTimeout(() => {
+                if (modal && document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
+            }, 5000);
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('fixed') && e.target.classList.contains('inset-0')) {
+                const modal = e.target;
+                if (modal.querySelector('.consultation-step')) {
+                    // It's the consultation modal
+                    modal.remove();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

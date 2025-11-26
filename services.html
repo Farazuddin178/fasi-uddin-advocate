@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Services - Mohammed Fasi Uddin Law Firm</title>
+    <meta name="description" content="Comprehensive legal services including criminal defense, civil litigation, family law, and corporate legal services by experienced attorney Mohammed Fasi Uddin.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#1a2332',
+                        'gold': '#c9a96e',
+                        'soft-gray': '#f8f9fa',
+                        'charcoal': '#2c3e50'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'accent': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(26, 35, 50, 0.9);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card.expanded {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .service-details.expanded {
+            max-height: 500px;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 2px solid #c9a96e;
+            color: #c9a96e;
+            background: transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #c9a96e;
+            color: #1a2332;
+        }
+        
+        .case-study-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .case-study-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="font-body text-charcoal bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-display font-bold text-white">Mohammed Fasi Uddin</h1>
+                    <span class="ml-2 text-gold text-sm">Advocate</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-gold transition-colors duration-300">Home</a>
+                    <a href="about.html" class="text-white hover:text-gold transition-colors duration-300">About</a>
+                    <a href="#services" class="text-white hover:text-gold transition-colors duration-300">Services</a>
+                    <a href="contact.html" class="text-white hover:text-gold transition-colors duration-300">Contact</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-navy to-charcoal text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl lg:text-6xl font-display font-bold mb-6 fade-in">Legal Services</h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto fade-in">Comprehensive legal representation across multiple practice areas, tailored to meet your specific needs with proven expertise and dedication.</p>
+                <div class="flex flex-wrap justify-center gap-4 fade-in">
+                    <button class="filter-btn active" data-filter="all">All Services</button>
+                    <button class="filter-btn" data-filter="criminal">Criminal Defense</button>
+                    <button class="filter-btn" data-filter="civil">Civil Litigation</button>
+                    <button class="filter-btn" data-filter="family">Family Law</button>
+                    <button class="filter-btn" data-filter="corporate">Corporate Law</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-20 bg-soft-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
+                
+                <!-- Criminal Defense Services -->
+                <div class="service-card p-8 fade-in" data-category="criminal" data-service="criminal-defense">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h3v-8h6v8h3a1 1 0 001-1V7l-7-5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4 text-center">Criminal Defense</h3>
+                    <p class="text-gray-600 text-center mb-6">Aggressive representation protecting your rights and freedom in criminal proceedings.</p>
+                    
+                    <div class="service-details">
+                        <div class="border-t pt-6 mt-6">
+                            <h4 class="font-semibold text-navy mb-4">Services Include:</h4>
+                            <ul class="space-y-2 text-gray-600 mb-6">
+                                <li>• DUI/DWI Defense</li>
+                                <li>• Drug Offenses</li>
+                                <li>• Assault & Battery Cases</li>
+                                <li>• Theft & Property Crimes</li>
+                                <li>• White Collar Crimes</li>
+                                <li>• Federal Criminal Defense</li>
+                            </ul>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-all" onclick="openCaseStudy('criminal-defense')">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Civil Litigation Services -->
+                <div class="service-card p-8 fade-in" data-category="civil" data-service="civil-litigation">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4 text-center">Civil Litigation</h3>
+                    <p class="text-gray-600 text-center mb-6">Strategic legal solutions for complex civil disputes and commercial litigation.</p>
+                    
+                    <div class="service-details">
+                        <div class="border-t pt-6 mt-6">
+                            <h4 class="font-semibold text-navy mb-4">Services Include:</h4>
+                            <ul class="space-y-2 text-gray-600 mb-6">
+                                <li>• Contract Disputes</li>
+                                <li>• Personal Injury Claims</li>
+                                <li>• Property Disputes</li>
+                                <li>• Employment Law</li>
+                                <li>• Professional Malpractice</li>
+                                <li>• Insurance Bad Faith</li>
+                            </ul>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-all" onclick="openCaseStudy('civil-litigation')">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family Law Services -->
+                <div class="service-card p-8 fade-in" data-category="family" data-service="family-law">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4 text-center">Family Law</h3>
+                    <p class="text-gray-600 text-center mb-6">Compassionate guidance through family legal matters with sensitive approach.</p>
+                    
+                    <div class="service-details">
+                        <div class="border-t pt-6 mt-6">
+                            <h4 class="font-semibold text-navy mb-4">Services Include:</h4>
+                            <ul class="space-y-2 text-gray-600 mb-6">
+                                <li>• Divorce Proceedings</li>
+                                <li>• Child Custody & Support</li>
+                                <li>• Spousal Support</li>
+                                <li>• Adoption Services</li>
+                                <li>• Domestic Violence Protection</li>
+                                <li>• Prenuptial Agreements</li>
+                            </ul>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-all" onclick="openCaseStudy('family-law')">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corporate Law Services -->
+                <div class="service-card p-8 fade-in" data-category="corporate" data-service="corporate-law">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a2 2 0 114 0 2 2 0 01-4 0zm8-1a1 1 0 100 2h2a1 1 0 100-2h-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4 text-center">Corporate Law</h3>
+                    <p class="text-gray-600 text-center mb-6">Comprehensive business legal services for corporate clients and entrepreneurs.</p>
+                    
+                    <div class="service-details">
+                        <div class="border-t pt-6 mt-6">
+                            <h4 class="font-semibold text-navy mb-4">Services Include:</h4>
+                            <ul class="space-y-2 text-gray-600 mb-6">
+                                <li>• Business Formation</li>
+                                <li>• Contract Drafting & Review</li>
+                                <li>• Mergers & Acquisitions</li>
+                                <li>• Corporate Governance</li>
+                                <li>• Intellectual Property</li>
+                                <li>• Regulatory Compliance</li>
+                            </ul>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-all" onclick="openCaseStudy('corporate-law')">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Services -->
+                <div class="service-card p-8 fade-in" data-category="civil" data-service="estate-planning">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm0 2v8h12V6H4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4 text-center">Estate Planning</h3>
+                    <p class="text-gray-600 text-center mb-6">Secure your legacy with comprehensive estate planning and probate services.</p>
+                    
+                    <div class="service-details">
+                        <div class="border-t pt-6 mt-6">
+                            <h4 class="font-semibold text-navy mb-4">Services Include:</h4>
+                            <ul class="space-y-2 text-gray-600 mb-6">
+                                <li>• Will Preparation</li>
+                                <li>• Trust Formation</li>
+                                <li>• Power of Attorney</li>
+                                <li>• Estate Administration</li>
+                                <li>• Tax Planning</li>
+                                <li>• Asset Protection</li>
+                            </ul>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-all" onclick="openCaseStudy('estate-planning')">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card p-8 fade-in" data-category="civil" data-service="real-estate">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-4 text-center">Real Estate Law</h3>
+                    <p class="text-gray-600 text-center mb-6">Expert guidance through real estate transactions and property disputes.</p>
+                    
+                    <div class="service-details">
+                        <div class="border-t pt-6 mt-6">
+                            <h4 class="font-semibold text-navy mb-4">Services Include:</h4>
+                            <ul class="space-y-2 text-gray-600 mb-6">
+                                <li>• Property Transactions</li>
+                                <li>• Title Issues</li>
+                                <li>• Landlord-Tenant Disputes</li>
+                                <li>• Zoning Matters</li>
+                                <li>• Construction Contracts</li>
+                                <li>• Environmental Compliance</li>
+                            </ul>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-all" onclick="openCaseStudy('real-estate')">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Call to Action -->
+    <section class="py-20 bg-navy text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">Need Legal Assistance?</h2>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">Don't navigate complex legal matters alone. Get expert guidance and representation tailored to your specific needs.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="bg-gold text-navy px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 transition-transform duration-300 inline-block text-center"
+                        style="box-shadow: 0 10px 30px rgba(201,169,110,0.25), 0 0 40px rgba(201,169,110,0.12); transition: box-shadow 250ms ease, transform 250ms ease;"
+                        onmouseover="this.style.boxShadow='0 18px 50px rgba(201,169,110,0.35), 0 0 60px rgba(201,169,110,0.25)'"
+                        onmouseout="this.style.boxShadow='0 10px 30px rgba(201,169,110,0.25), 0 0 40px rgba(201,169,110,0.12)'">
+                         Schedule Consultation
+                    </a>
+                    <a href="contact.html" class="border-2 border-gold text-gold px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold hover:text-navy transition-all duration-300 inline-block">
+                        Contact Us Today
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Modal -->
+    <div id="case-study-modal" class="case-study-modal">
+        <div class="case-study-content">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-display font-bold text-navy" id="case-study-title">Case Study</h3>
+                    <button onclick="closeCaseStudy()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="case-study-content">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-display font-bold text-gold mb-4">Mohammed Fasi Uddin</h3>
+                    <p class="text-gray-400 mb-4">Expert legal representation with integrity and dedication.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>📧 fasiuddinadvocate@gmail.com</p>
+                        <p>📞 +91 8142550969</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+            initServiceCards();
+            initFilters();
+        });
+        
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        function initServiceCards() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const details = this.querySelector('.service-details');
+                    const isExpanded = details.classList.contains('expanded');
+                    
+                    // Close all other cards
+                    serviceCards.forEach(otherCard => {
+                        if (otherCard !== this) {
+                            otherCard.classList.remove('expanded');
+                            otherCard.querySelector('.service-details').classList.remove('expanded');
+                        }
+                    });
+                    
+                    // Toggle current card
+                    if (isExpanded) {
+                        this.classList.remove('expanded');
+                        details.classList.remove('expanded');
+                    } else {
+                        this.classList.add('expanded');
+                        details.classList.add('expanded');
+                    }
+                });
+            });
+        }
+        
+        function initFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const filter = this.getAttribute('data-filter');
+
+                    // Filter cards
+                    serviceCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(30px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+
+        function openCaseStudy(serviceType) {
+            const modal = document.getElementById('case-study-modal');
+            const title = document.getElementById('case-study-title');
+            const content = document.getElementById('case-study-content');
+
+            const caseStudies = {
+                'criminal-defense': {
+                    title: 'Criminal Defense Case Study',
+                    content: `
+                        <div class="space-y-6">
+                            <div class="bg-soft-gray p-6 rounded-lg">
+                                <h4 class="text-xl font-semibold text-navy mb-4">Case Overview</h4>
+                                <p class="text-gray-700 mb-4">Client charged with white-collar crime facing 10+ years in prison and $500,000 in fines.</p>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h5 class="font-semibold text-navy">Challenge:</h5>
+                                        <p class="text-gray-600">Complex financial evidence and potential witness tampering</p>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-navy">Outcome:</h5>
+                                        <p class="text-gray-600">Charges reduced, client received probation and community service</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gold bg-opacity-10 p-6 rounded-lg">
+                                <h4 class="text-xl font-semibold text-navy mb-4">Strategy & Results</h4>
+                                <p class="text-gray-700">Through meticulous evidence review and expert witness testimony, we successfully challenged the prosecution's case and negotiated a favorable plea agreement.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'civil-litigation': {
+                    title: 'Civil Litigation Case Study',
+                    content: `
+                        <div class="space-y-6">
+                            <div class="bg-soft-gray p-6 rounded-lg">
+                                <h4 class="text-xl font-semibold text-navy mb-4">Case Overview</h4>
+                                <p class="text-gray-700 mb-4">Contract dispute involving $2 million in damages between two technology companies.</p>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h5 class="font-semibold text-navy">Challenge:</h5>
+                                        <p class="text-gray-600">Complex technical specifications and multiple contract amendments</p>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-navy">Outcome:</h5>
+                                        <p class="text-gray-600">Favorable settlement of $1.8 million for our client</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gold bg-opacity-10 p-6 rounded-lg">
+                                <h4 class="text-xl font-semibold text-navy mb-4">Strategy & Results</h4>
+                                <p class="text-gray-700">Our thorough contract analysis and strategic negotiation resulted in a settlement that exceeded client expectations while avoiding lengthy litigation.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'family-law': {
+                    title: 'Family Law Case Study',
+                    content: `
+                        <div class="space-y-6">
+                            <div class="bg-soft-gray p-6 rounded-lg">
+                                <h4 class="text-xl font-semibold text-navy mb-4">Case Overview</h4>
+                                <p class="text-gray-700 mb-4">Complex divorce involving child custody, significant assets, and business interests.</p>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h5 class="font-semibold text-navy">Challenge:</h5>
+                                        <p class="text-gray-600">High-conflict situation with multiple properties and business valuations</p>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-navy">Outcome:</h5>
+                                        <p class="text-gray-600">Fair asset division and joint custody arrangement</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gold bg-opacity-10 p-6 rounded-lg">
+                                <h4 class="text-xl font-semibold text-navy mb-4">Strategy & Results</h4>
+                                <p class="text-gray-700">Through mediation and collaborative law techniques, we achieved a resolution that protected our client's interests while maintaining family relationships.</p>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+            
+            const study = caseStudies[serviceType] || {
+                title: 'Case Study',
+                content: '<p>Case study content coming soon...</p>'
+            };
+            
+            title.textContent = study.title;
+            content.innerHTML = study.content;
+            modal.style.display = 'flex';
+        }
+        
+        function closeCaseStudy() {
+            document.getElementById('case-study-modal').style.display = 'none';
+        }
+        
+        function showConsultationModal() {
+            // This would show the consultation modal
+            alert('Consultation scheduling feature coming soon! Please call +1 (555) 123-4567 to schedule your consultation.');
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('case-study-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCaseStudy();
+            }
+        });
+        
+    </script>
+</body>
+</html>

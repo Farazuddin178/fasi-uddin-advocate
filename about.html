@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Mohammed Fasi Uddin - Expert Legal Advocate</title>
+    <meta name="description" content="Learn about Mohammed Fasi Uddin's legal expertise, education, and track record of successful case outcomes in criminal defense, civil litigation, and family law.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#1a2332',
+                        'gold': '#c9a96e',
+                        'soft-gray': '#f8f9fa',
+                        'charcoal': '#2c3e50'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'accent': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(26, 35, 50, 0.9);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #c9a96e;
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: linear-gradient(to bottom, #c9a96e, transparent);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #c9a96e, #d4af37);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+        
+        .achievement-card {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="font-body text-charcoal bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-display font-bold text-white">Mohammed Fasi Uddin</h1>
+                    <span class="ml-2 text-gold text-sm">Advocate</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-gold transition-colors duration-300">Home</a>
+                    <a href="#about" class="text-white hover:text-gold transition-colors duration-300">About</a>
+                    <a href="services.html" class="text-white hover:text-gold transition-colors duration-300">Services</a>
+                    <a href="contact.html" class="text-white hover:text-gold transition-colors duration-300">Contact</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-navy to-charcoal text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl lg:text-6xl font-display font-bold mb-6 fade-in">About Mohammed Fasi Uddin</h1>
+                    <p class="text-xl text-gray-300 mb-8 fade-in">A dedicated legal professional with over 15 years of experience delivering exceptional results for clients across multiple practice areas.</p>
+                    <div class="flex flex-wrap gap-4 fade-in">
+                        <div class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold">
+                            10+ Years Experience
+                        </div>
+                        <div class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold">
+                            1200+ Cases Won
+                        </div>
+                        <div class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold">
+                            98% Success Rate
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <img src="resources/mohammed-fasi-uddin.jpg" alt="Mohammed Fasi Uddin" class="w-80 h-80 object-cover rounded-lg shadow-2xl mx-auto fade-in">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-2">
+                    <h2 class="text-4xl font-display font-bold text-navy mb-8 fade-in">Professional Biography</h2>
+                    <div class="prose prose-lg text-gray-700 fade-in">
+                        <p class="text-xl leading-relaxed mb-6">Mohammed Fasi Uddin is a distinguished legal advocate renowned for his exceptional track record in delivering favorable outcomes for his clients. With a career spanning over 10+ years, he has established himself as one of the most respected legal professionals in the region.</p>
+                        
+                        <p class="mb-6">His approach to legal practice combines deep legal knowledge with strategic thinking and unwavering dedication to client advocacy. He believes that every client deserves personalized attention and a tailored legal strategy that addresses their unique circumstances.</p>
+                        
+                        <p class="mb-6">Throughout his career, Mohammed has successfully handled over 1200 cases across various legal domains, maintaining an impressive 98% success rate. His expertise spans criminal defense, civil litigation, family law, and corporate legal services.</p>
+                        
+                        <p class="mb-6">What sets Mohammed apart is his commitment to staying current with legal developments and his ability to leverage cutting-edge legal technology to benefit his clients. He regularly participates in continuing legal education and is known for his innovative approach to case management.</p>
+                        
+                        <p>His client-centered philosophy ensures that each case receives the attention it deserves, with clear communication and transparent processes throughout the legal journey.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-display font-bold text-navy mb-6 fade-in">Core Values</h3>
+                    <div class="space-y-4 fade-in">
+                        <div class="bg-soft-gray p-4 rounded-lg">
+                            <h4 class="font-semibold text-navy mb-2">Integrity</h4>
+                            <p class="text-gray-600 text-sm">Unwavering ethical standards in all legal proceedings.</p>
+                        </div>
+                        <div class="bg-soft-gray p-4 rounded-lg">
+                            <h4 class="font-semibold text-navy mb-2">Excellence</h4>
+                            <p class="text-gray-600 text-sm">Commitment to achieving the best possible outcomes.</p>
+                        </div>
+                        <div class="bg-soft-gray p-4 rounded-lg">
+                            <h4 class="font-semibold text-navy mb-2">Compassion</h4>
+                            <p class="text-gray-600 text-sm">Understanding and empathy for clients' situations.</p>
+                        </div>
+                        <div class="bg-soft-gray p-4 rounded-lg">
+                            <h4 class="font-semibold text-navy mb-2">Innovation</h4>
+                            <p class="text-gray-600 text-sm">Leveraging technology for efficient legal solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Call to Action -->
+    <section class="py-20 bg-charcoal text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">Ready to Work Together?</h2>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">Experience the difference that dedicated, experienced legal representation can make in your case.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="bg-gold text-navy px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 transition-transform duration-300 inline-block text-center"
+                        style="box-shadow: 0 10px 30px rgba(201,169,110,0.25), 0 0 40px rgba(201,169,110,0.12); transition: box-shadow 250ms ease, transform 250ms ease;"
+                        onmouseover="this.style.boxShadow='0 18px 50px rgba(201,169,110,0.35), 0 0 60px rgba(201,169,110,0.25)'"
+                        onmouseout="this.style.boxShadow='0 10px 30px rgba(201,169,110,0.25), 0 0 40px rgba(201,169,110,0.12)'">
+                         Schedule Consultation
+                    </a>
+                    <a href="contact.html" class="border-2 border-gold text-gold px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold hover:text-navy transition-all duration-300 inline-block">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-display font-bold text-gold mb-4">Mohammed Fasi Uddin</h3>
+                    <p class="text-gray-400 mb-4">Expert legal representation with integrity and dedication.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Services</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>📧 fasiuddinadvocate@gmail.com</p>
+                        <p>📞 +91 8142550969</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize page-specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+            initSkillBars();
+            initCharts();
+            initCounters();
+        });
+        
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        function initSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width + '%';
+                        }, 500);
+                        skillObserver.unobserve(bar);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillBars.forEach(bar => {
+                skillObserver.observe(bar);
+            });
+        }
+        
+        function initCharts() {
+            // Success Rate Chart
+            const successChart = echarts.init(document.getElementById('success-chart'));
+            const successOption = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                series: [{
+                    name: 'Success Rate',
+                    type: 'pie',
+                    radius: '70%',
+                    data: [
+                        { value: 95, name: 'Criminal Defense' },
+                        { value: 92, name: 'Civil Litigation' },
+                        { value: 88, name: 'Family Law' },
+                        { value: 90, name: 'Corporate Law' }
+                    ],
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+                    color: ['#c9a96e', '#d4af37', '#b8860b', '#daa520']
+                }]
+            };
+            successChart.setOption(successOption);
+            
+            // Timeline Chart
+            const timelineChart = echarts.init(document.getElementById('timeline-chart'));
+            const timelineOption = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['2019', '2020', '2021', '2022', '2023', '2024']
+                },
+                yAxis: {
+                    type: 'value',
+                    max: 100
+                },
+                series: [{
+                    name: 'Success Rate %',
+                    data: [94, 96, 97, 98, 98, 99],
+                    type: 'line',
+                    smooth: true,
+                    lineStyle: {
+                        color: '#c9a96e',
+                        width: 3
+                    },
+                    itemStyle: {
+                        color: '#c9a96e'
+                    },
+                    areaStyle: {
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0, color: 'rgba(201, 169, 110, 0.3)'
+                            }, {
+                                offset: 1, color: 'rgba(201, 169, 110, 0.1)'
+                            }]
+                        }
+                    }
+                }]
+            };
+            timelineChart.setOption(timelineOption);
+            
+            // Resize charts on window resize
+            window.addEventListener('resize', function() {
+                successChart.resize();
+                timelineChart.resize();
+            });
+        }
+        
+        function initCounters() {
+            const counters = document.querySelectorAll('[data-target]');
+            
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+                        let current = 0;
+                        
+                        const updateCounter = () => {
+                            if (current < target) {
+                                current += increment;
+                                counter.textContent = Math.floor(current);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target;
+                            }
+                        };
+                        
+                        updateCounter();
+                        counterObserver.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+        }
+    </script>
+</body>
+</html>
