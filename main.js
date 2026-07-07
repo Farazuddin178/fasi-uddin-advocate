@@ -256,12 +256,12 @@ document.addEventListener('DOMContentLoaded', function() {
             showConsultationModal();
         }
         
-        if (e.target.textContent.includes('View Case Results')) {
-            window.location.href = 'about.html#results';
+        if (e.target.textContent.includes('View Case Analytics')) {
+            window.open('https://fasi-law-chamber.onrender.com', '_blank', 'noopener,noreferrer');
         }
         
         if (e.target.textContent.includes('Access Case Analytics')) {
-            window.location.href = 'contact.html#analytics';
+            window.open('https://fasi-law-chamber.onrender.com', '_blank', 'noopener,noreferrer');
         }
     });
     
